@@ -5,8 +5,9 @@ require('dotenv').config()
 const connectdb = require('./config/connectdb')
 const userRoutes = require('../ecommerce/routes/userRoutes')
 const productRoutes = require('../ecommerce/routes/productRoutes')
-
-
+const wishlistRoutes = require('../ecommerce/routes/wishlistRoutes')
+const authMiddleware = require('./middlewares/authMiddleware')
+const cartRoutes = require('../ecommerce/routes/cartRoutes')
 
 
 
@@ -20,6 +21,8 @@ app.use(express.json())
 // Routes
 app.use('/api/user',userRoutes)
 app.use('/api/products',productRoutes)
+app.use('/api/wishlist',authMiddleware,wishlistRoutes)
+app.use('/api/cart',cartRoutes)
 
 connectdb(process.env.DATABASE_URL)
 
