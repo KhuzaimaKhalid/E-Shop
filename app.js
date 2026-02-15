@@ -8,6 +8,8 @@ const productRoutes = require('../ecommerce/routes/productRoutes')
 const wishlistRoutes = require('../ecommerce/routes/wishlistRoutes')
 const authMiddleware = require('./middlewares/authMiddleware')
 const cartRoutes = require('../ecommerce/routes/cartRoutes')
+const adminMiddleware = require('../ecommerce/middlewares/adminMiddleware')
+const orderRoutes = require('../ecommerce/routes/orderRoutes')
 
 
 
@@ -23,6 +25,7 @@ app.use('/api/user',userRoutes)
 app.use('/api/products',productRoutes)
 app.use('/api/wishlist',authMiddleware,wishlistRoutes)
 app.use('/api/cart',cartRoutes)
+app.use('/api/order',authMiddleware,orderRoutes)
 
 connectdb(process.env.DATABASE_URL)
 
